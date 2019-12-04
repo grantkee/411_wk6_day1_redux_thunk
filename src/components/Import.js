@@ -6,11 +6,29 @@ import {
     TableHead,
     TableBody,
     TableRow,
-    TableCell
+    TableCell,
+    Menu,
+    MenuItem,
+    IconButton
 } from '@material-ui/core'
+import { MoreVert } from '@material-ui/icons'
+
+const menuOptions = [
+    'Like',
+    'Delete'
+]
 
 const Import = (props) => {
-    // fill out this component
+    const [anchorEl, setAnchorEl] = React.useState(null)
+    const open = Boolean(anchorEl)
+
+    const handleClick = ( event ) => {
+        setAnchorEl(event.currentTarget)
+    }
+
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
 
     return (
         <>
@@ -28,7 +46,21 @@ const Import = (props) => {
                     <TableRow key={car.MakeId}>
                         <TableCell>{car['MakeId']}</TableCell>
                         <TableCell>{car['MakeName']}</TableCell>
-                        <TableCell>Action</TableCell>
+                        <TableCell>
+                            <IconButton area-label='options' aria-controls='long-menu' aria-haspopup='true' onClick={handleClick}>
+                                <MoreVert/>
+                            </IconButton>
+                            <Menu
+                              id='long-menu'
+                              anchorEl={anchorEl}
+                              keepMounted
+                              onClose={handleClose}
+                              >
+                                  {menuOptions.map( option => (
+                                      <MenuItem key={option} selected={option === 'delete'} onClick={handleClose}></MenuItem>
+                                  ) )}
+                              </Menu>
+                        </TableCell>
                     </TableRow>
                 ))}
             </TableBody>
