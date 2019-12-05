@@ -54,10 +54,11 @@ const Import = (props) => {
                               id='long-menu'
                               anchorEl={anchorEl}
                               keepMounted
+                              open={open}
                               onClose={handleClose}
                               >
                                   {menuOptions.map( option => (
-                                      <MenuItem key={option} selected={option === 'delete'} onClick={handleClose}></MenuItem>
+                                      <MenuItem key={option} selected={option === 'delete'} onClick={handleClose}>{option}</MenuItem>
                                   ) )}
                               </Menu>
                         </TableCell>
