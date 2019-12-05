@@ -30,3 +30,10 @@ export const fetchMakes = () => {
         .catch(error => console.log(error))
     }
 }
+
+export const deleteMake = ( index ) => {
+    return {
+        type: 'REMOVE_MAKE',
+        value: index
+    }
+}

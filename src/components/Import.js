@@ -26,7 +26,7 @@ const Import = (props) => {
         setAnchorEl(event.currentTarget)
     }
 
-    const handleClose = () => {
+    const handleClose = ( event ) => {
         setAnchorEl(null)
     }
 
@@ -58,7 +58,7 @@ const Import = (props) => {
                               onClose={handleClose}
                               >
                                   {menuOptions.map( option => (
-                                      <MenuItem key={option} selected={option === 'delete'} onClick={handleClose}>{option}</MenuItem>
+                                      <MenuItem key={option} selected={option === 'delete'} onClick={()=>props.removeCar(car.MakeId)}>{option}</MenuItem>
                                   ) )}
                               </Menu>
                         </TableCell>
