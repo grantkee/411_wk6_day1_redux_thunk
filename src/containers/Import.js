@@ -11,7 +11,7 @@ const mapStateToProps = ( state ) => {
 
 const mapDispatchToProps = ( dispatch ) => ({
         fetchMakes: () => dispatch(fetchMakes()),
-        deleteMake: () => dispatch(deleteMake())
+        deleteMake: (index) => dispatch(deleteMake(index))
     })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Import)

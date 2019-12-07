@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {
-    Container,
     Table,
     Button,
     TableHead,
@@ -14,7 +13,6 @@ import {
 import { MoreVert } from '@material-ui/icons'
 
 const menuOptions = [
-    'Like',
     'Delete'
 ]
 
@@ -26,13 +24,22 @@ const Import = (props) => {
     const [count] = useState(0)
 
     const handleClick = ( event ) => {
+        
         setAnchorEl(event.currentTarget)
+        // debugger;
+        // let menuItem = event.target
+        // debugger;
+        // props.deleteMake(menuItem)
+        // handleClose()
     }
 
-    const handleClose = ( event ) => {
-        let menuItem = event.target
-        props.removeMake(menuItem)
+    const handleClose = ( index ) => {
+        // debugger;
         setAnchorEl(null)
+
+        props.deleteMake(index)
+
+        debugger;
     }
 
     return (
@@ -47,12 +54,12 @@ const Import = (props) => {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {props.makes.map( car => (
+                {props.makes.map( (car, index) => (
                     <TableRow key={car.MakeId}>
                         <TableCell>{car['MakeId']}</TableCell>
                         <TableCell>{car['MakeName']}</TableCell>
                         <TableCell>
-                            <IconButton area-label='options' aria-controls='long-menu' aria-haspopup='true' onClick={handleClose}>
+                            <IconButton area-label='options' aria-controls='long-menu' aria-haspopup='true' onClick={handleClick}>
                                 <MoreVert/>
                             </IconButton>
                             <Menu
@@ -63,7 +70,7 @@ const Import = (props) => {
                               onClose={handleClose}
                               >
                                   {menuOptions.map( option => (
-                                      <MenuItem key={option} selected={option === 'delete'} onClick={handleClick}>{option}</MenuItem>
+                                    <MenuItem key={option} selected={option === 'Delete'} onClick={() => handleClose(index)}>{option}</MenuItem>
                                   ) )}
                               </Menu>
                         </TableCell>
