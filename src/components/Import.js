@@ -13,7 +13,7 @@ import {
 import { MoreVert } from '@material-ui/icons'
 
 const menuOptions = [
-    'Delete'
+    'Delete' 
 ]
 
 const Import = (props) => {
@@ -24,21 +24,16 @@ const Import = (props) => {
     const [count] = useState(0)
 
     const handleClick = ( event ) => {
-        
         setAnchorEl(event.currentTarget)
-        // debugger;
-        // let menuItem = event.target
-        // debugger;
-        // props.deleteMake(menuItem)
-        // handleClose()
     }
 
-    const handleClose = ( index ) => {
-        // debugger;
+    const handleClose = () => {
         setAnchorEl(null)
+    }
 
+    const removeMake = ( index ) => {
         props.deleteMake(index)
-
+        handleClose()
         debugger;
     }
 
@@ -69,8 +64,8 @@ const Import = (props) => {
                               open={open}
                               onClose={handleClose}
                               >
-                                  {menuOptions.map( option => (
-                                    <MenuItem key={option} selected={option === 'Delete'} onClick={() => handleClose(index)}>{option}</MenuItem>
+                                  {menuOptions.map( (option) => (
+                                    <MenuItem key={option} selected={option === 'Delete'} onClick={() => removeMake(index)}>{option}</MenuItem>
                                   ) )}
                               </Menu>
                         </TableCell>
