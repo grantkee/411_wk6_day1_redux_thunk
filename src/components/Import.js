@@ -31,7 +31,9 @@ const Import = (props) => {
         setAnchorEl(null)
     }
 
-    const removeMake = ( index ) => {
+    const removeMake = ( id ) => {
+        //keeps passing the last index of the array props.makes, so I'm trying to pass the key I'm using and filtering it out that way. However, that's also not working because the id that's being passed is the id of the very last index. For some reason, even though <Menu> is in the last TableCell, it's not being processed until the entire array has been mmapped over. I'm not really sure why it's doing that, but I'm pretty stuck
+        let index = props.makes.findIndex(car => car.MakeId === id)
         props.deleteMake(index)
         handleClose()
         debugger;
@@ -52,7 +54,7 @@ const Import = (props) => {
                 {props.makes.map( (car, index) => (
                     <TableRow key={car.MakeId}>
                         <TableCell>{car['MakeId']}</TableCell>
-                        <TableCell>{car['MakeName']}</TableCell>
+                        <TableCell>{`${car['MakeName']}  ${index}`}</TableCell>
                         <TableCell>
                             <IconButton area-label='options' aria-controls='long-menu' aria-haspopup='true' onClick={handleClick}>
                                 <MoreVert/>
@@ -65,7 +67,7 @@ const Import = (props) => {
                               onClose={handleClose}
                               >
                                   {menuOptions.map( (option) => (
-                                    <MenuItem key={option} selected={option === 'Delete'} onClick={() => removeMake(index)}>{option}</MenuItem>
+                                    <MenuItem key={option} selected={option === 'Delete'} onClick={() => removeMake(car.MakeId)}>{option}</MenuItem>
                                   ) )}
                               </Menu>
                         </TableCell>
