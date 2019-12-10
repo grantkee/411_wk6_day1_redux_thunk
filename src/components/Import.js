@@ -13,7 +13,7 @@ import {
 import { MoreVert } from '@material-ui/icons'
 
 const menuOptions = [
-    'Delete' 
+    'Delete'
 ]
 
 const Import = (props) => {
@@ -58,6 +58,7 @@ const Import = (props) => {
                         <TableCell>
                             <IconButton area-label='options' aria-controls='long-menu' aria-haspopup='true' onClick={handleClick}>
                                 <MoreVert/>
+                                <p>{index}</p>
                             </IconButton>
                             <Menu
                               id='long-menu'
